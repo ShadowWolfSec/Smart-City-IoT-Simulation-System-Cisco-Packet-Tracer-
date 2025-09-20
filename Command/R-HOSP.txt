@@ -1,0 +1,19 @@
+conf t
+! LAN المستشفى
+int g0/0
+ ip address 10.3.0.1 255.255.0.0
+ no shut
+
+! رابط مع R2
+int g0/1
+ ip address 172.16.3.2 255.255.255.252
+ no shut
+
+router ospf 1
+ network 10.3.0.0 0.0.255.255 area 0
+ network 172.16.3.0 0.0.0.3 area 0
+end
+wr
+
+
+ip route 0.0.0.0 0.0.0.0 172.16.3.1

@@ -1,0 +1,19 @@
+conf t
+! LAN البيت
+int g0/0
+ ip address 10.1.0.1 255.255.0.0
+ no shut
+
+! رابط مع R1
+int g0/1
+ ip address 172.16.1.2 255.255.255.252
+ no shut
+
+router ospf 1
+ network 10.1.0.0 0.0.255.255 area 0
+ network 172.16.1.0 0.0.0.3 area 0
+end
+wr
+
+
+ip route 0.0.0.0 0.0.0.0 172.16.1.1

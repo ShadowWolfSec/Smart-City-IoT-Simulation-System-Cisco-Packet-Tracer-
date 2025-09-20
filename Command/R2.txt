@@ -1,0 +1,30 @@
+R2 (Edge for Uni + Hosp → link with R1)
+
+conf t
+! رابط مع R-UNI
+int g0/0
+ ip address 172.16.2.1 255.255.255.252
+ no shut
+
+! رابط مع R-HOSP
+int g0/1
+ ip address 172.16.3.1 255.255.255.252
+ no shut
+
+! رابط مع R1
+int g0/2
+ ip address 172.16.4.2 255.255.255.252
+ no shut
+
+router ospf 1
+ network 172.16.2.0 0.0.0.3 area 0
+ network 172.16.3.0 0.0.0.3 area 0
+ network 172.16.4.0 0.0.0.3 area 0
+end
+wr
+
+
+
+ip route 10.2.0.0 255.255.255.0 172.16.2.2
+ip route 10.3.0.0 255.255.255.0 172.16.3.2
+ip route 0.0.0.0 0.0.0.0 172.16.4.1

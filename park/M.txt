@@ -1,0 +1,25 @@
+function setup(){
+	pinMode(0,INPUT);
+	pinMode(1,OUTPUT);
+	
+	IoEClient.setup({
+		type:"MicroController",
+		states:[
+			{
+			name:"Motion",
+			type:"number",
+			decimalDigits:1
+			}]
+		
+	});
+}
+
+function loop(){
+	var s0=digitalRead(0);
+	
+	Serial.println(s0);
+	
+
+	IoEClient.reportStates((s0));
+	
+}

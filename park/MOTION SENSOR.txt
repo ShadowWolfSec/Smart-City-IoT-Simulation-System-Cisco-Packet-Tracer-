@@ -1,0 +1,49 @@
+from time import *
+from physical import *
+from gpio import *
+
+
+DEACTIVATE_TIMER = 5 # in seconds        # var DEACTIVATE_TIMER
+state = LOW        # var state
+current_time = 0        # var current_time
+
+
+def setup ():
+    setState(state)
+
+
+
+def mouseEvent (pressed, x, y, firstPress):
+    setState(HIGH)
+
+
+
+def loop ():
+    global current_time
+    if state == HIGH:
+        current_time -= 1
+        if current_time <= 0:
+            setState(LOW)
+    
+    sleep(1)
+
+
+
+def setState (newState):
+    global state, current_time
+    state = newState
+    if state is LOW:
+        digitalWrite(0, LOW)
+    else:
+        digitalWrite(0, HIGH)
+        current_time = DEACTIVATE_TIMER
+
+    setDeviceProperty(getName(), "state", state)
+
+
+if __name__ == "__main__":
+    setup()
+    while True:
+        loop()
+        sleep(0)
+

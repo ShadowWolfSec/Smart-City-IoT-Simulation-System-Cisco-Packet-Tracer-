@@ -1,0 +1,226 @@
+from gpio import *
+from time import *
+
+def main():
+	pinMode(0,INPUT)
+	pinMode(1,INPUT)
+	pinMode(2,INPUT)
+	pinMode(3,INPUT)
+	pinMode(4,INPUT)
+	pinMode(5,OUTPUT)
+	pinMode(6,OUTPUT)
+	pinMode(7,OUTPUT)
+	pinMode(8,OUTPUT)
+	pinMode(9,OUTPUT)
+	
+	while True:
+		s1=analogRead(0);
+		s2=analogRead(1);
+		s3=analogRead(2);
+		s4=analogRead(3);
+		s5=analogRead(4);
+		print(s1)
+		print(s2)
+		print(s3)
+		print(s4)
+		print(s5)
+		#5 ka guchha
+		if(s1> 0 and s2 > 0 and s3>0 and s4>0 and s5>0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+		#4 ka
+		elif(s1> 0 and s2 > 0 and s3>0 and s4>0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s1> 0 and s2 > 0 and s3>0 and s5>0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(8," SLOT-19\nEMPTY ")
+		elif(s1> 0 and s2 > 0 and s4>0 and s5>0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(7," SLOT-18\nEMPTY ")
+		elif(s1> 0 and s3>0 and s4>0 and s5>0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(6," SLOT-17\nEMPTY ")
+		elif(s2 > 0 and s3>0 and s4>0 and s5>0):
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(5," SLOT-16\nEMPTY ")
+		#3
+		elif(s1 > 0 and s2>0 and s3>0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(8," SLOT-19\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s2 > 0 and s4>0 and s3>0):
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s3 > 0 and s4>0 and s5>0):
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(6," SLOT-17\nEMPTY ")
+		elif(s1 > 0 and s4>0 and s5>0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(6," SLOT-17\nEMPTY ")
+			customWrite(7," SLOT-18\nEMPTY ")
+		elif(s5 > 0 and s1>0 and s2>0):
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+		elif(s1 > 0 and s2>0 and s4>0):
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s1 > 0 and s3>0 and s5>0):
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(6," SLOT-17\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+		elif(s2 > 0 and s3>0 and s5>0):
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+		elif(s3 > 0 and s1>0 and s4>0):
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(6," SLOT-17\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s4 > 0 and s5>0 and s2>0):
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(7," SLOT-18\nEMPTY ")
+		#2
+		elif(s1> 0 and s2 > 0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s1> 0 and s3 > 0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(6," SLOT-17\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s1> 0 and s4 > 0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(6," SLOT-17\nEMPTY ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s1> 0 and s5 > 0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(6," SLOT-17\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+		elif(s2> 0 and s3 > 0):
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s2> 0 and s4 > 0):
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s2> 0 and s5 > 0):
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+			customWrite(5," SLOT-16\nEMPTY ")
+		elif(s3> 0 and s4 > 0):
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(6," SLOT-17\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s3> 0 and s5 > 0):
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+			customWrite(6," SLOT-17\nEMPTY ")
+		elif(s5> 0 and s4 > 0):
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(6," SLOT-17\nEMPTY ")
+		#1
+		elif(s1 > 0):
+			customWrite(5," SLOT-16\nOCCUPIED ")
+			customWrite(6," SLOT-17\nEMPTY ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		elif(s2 > 0):
+			customWrite(6," SLOT-17\nOCCUPIED ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+			customWrite(5," SLOT-16\nEMPTY ")
+		elif(s3 > 0):
+			customWrite(7," SLOT-18\nOCCUPIED ")
+			customWrite(8," SLOT-19\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(6," SLOT-17\nEMPTY ")
+		elif(s4 > 0):
+			customWrite(8," SLOT-19\nOCCUPIED ")
+			customWrite(9," SLOT-20\nEMPTY ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(6," SLOT-17\nEMPTY ")
+			customWrite(7," SLOT-18\nEMPTY ")
+		elif(s5 > 0):
+			customWrite(9," SLOT-20\nOCCUPIED ")
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(6," SLOT-17\nEMPTY ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+		else:
+			customWrite(5," SLOT-16\nEMPTY ")
+			customWrite(6," SLOT-17\nEMPTY ")
+			customWrite(7," SLOT-18\nEMPTY ")
+			customWrite(8," SLOT-19\nEMPTY ")
+			customWrite(9," SLOT-20\nEMPTY ")
+		
+if __name__=="__main__":
+	main()

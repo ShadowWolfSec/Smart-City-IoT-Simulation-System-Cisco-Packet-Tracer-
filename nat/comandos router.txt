@@ -1,0 +1,29 @@
+
+enable
+configure terminal 
+interface GigabitEthernet0/2
+ip address 10.0.0.1 255.255.255.0
+no shut down
+exit
+interface GigabitEthernet0/0
+ip address 209.165.201.225 255.255.255.224
+no shut down
+exit
+interface GigabitEthernet0/1
+ip address 209.165.200.225 255.255.255.224
+no shut down
+exit
+ip dhcp excluded-address 209.165.201.225 209.165.201.229
+ip dhcp pool CELL
+network 209.165.201.224 255.255.255.224
+default-router 209.165.201.225
+dns-server 10.0.0.254
+exit
+ip dhcp excluded-address 209.165.200.225 209.165.200.229
+ip dhcp pool WAN
+network 209.165.200.224 255.255.255.224
+default-router 209.165.200.225
+dns-server 10.0.0.254
+exit
+exit
+write

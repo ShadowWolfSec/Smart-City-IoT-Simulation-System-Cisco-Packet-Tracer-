@@ -1,0 +1,30 @@
+ R1 (Edge for House → Main + link with R2)
+
+conf t
+! رابط مع R-HOUSE
+int g0/0
+ ip address 172.16.1.1 255.255.255.252
+ no shut
+
+! رابط مع R2
+int g0/1
+ ip address 172.16.4.1 255.255.255.252
+ no shut
+
+! رابط مع R-MAIN
+int g0/2
+ ip address 172.16.5.2 255.255.255.252
+ no shut
+
+router ospf 1
+ network 172.16.1.0 0.0.0.3 area 0
+ network 172.16.4.0 0.0.0.3 area 0
+ network 172.16.5.0 0.0.0.3 area 0
+end
+wr
+
+
+ip route 10.1.0.0 255.255.255.0 172.16.1.2
+ip route 10.2.0.0 255.255.255.0 172.16.4.2
+ip route 10.3.0.0 255.255.255.0 172.16.4.2
+ip route 0.0.0.0 0.0.0.0 172.16.5.1

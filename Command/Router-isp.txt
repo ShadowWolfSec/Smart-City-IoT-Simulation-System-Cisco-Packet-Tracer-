@@ -1,0 +1,48 @@
+enable
+conf t
+hostname Router-ISP
+int g0/0          # الواجهة المتصلة بـ Central Office Server
+ ip address 10.0.0.1 255.255.255.0
+ no shutdown
+exit
+wr
+
+
+enable
+conf t
+hostname Router-ISP
+int g0/0
+ ip address 10.0.0.1 255.255.255.0
+ no shutdown
+exit
+wr
+
+
+
+ip route 10.1.0.0 255.0.0.0 172.16.10.2   ! شبكة البيت
+ip route 10.2.0.0 255.0.0.0 172.16.10.2   ! شبكة الجامعة
+ip route 10.3.0.0 255.0.0.0 172.16.10.2   ! شبكة المستشفى
+
+
+
+
+ip route 10.0.0.0 255.0.0.0 172.16.10.2
+ip route 10.0.0.0 255.0.0.0 172.16.10.2
+
+
+ip route 10.0.0.0 255.0.0.0 172.16.10.2
+
+
+
+
+ip route 10.1.0.0 0.255.255.255 172.16.10.2
+ip route 10.2.0.0 0.255.255.255 172.16.10.2
+ip route 10.3.0.0 0.255.255.255 172.16.10.2
+
+
+
+إعداد Central Office Server
+
+LAN1 (الاتصال بـ Router-ISP): 10.0.0.100/24, GW: 10.0.0.1
+
+LAN2 (الاتصال بـ Cell Tower): 192.168.50.1/24
